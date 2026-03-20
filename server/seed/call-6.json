@@ -1,0 +1,64 @@
+{
+  "id": "call-6",
+  "fileName": "Call 6.wav",
+  "uploadedAt": "2025-03-05T10:30:00.000Z",
+  "duration": 111,
+  "status": "ready",
+  "transcript": "Agent: Thanks — is this for a rental or your primary home?\nCustomer: Rental — needs to be durable but not fancy.\nAgent: We'll stick to standard depths and laminate slab — fastest and most cost-effective.\nCustomer: Send pricing for kitchen and two baths together.\nAgent: You'll have it by end of day.",
+  "summary": "Rental property refresh with tight budget. Agent focused on durable laminate finishes and stock sizes to control cost. Outcome: quote requested for two bathrooms plus kitchen.",
+  "sentiment": "positive",
+  "overallScore": 7.5,
+  "agentTalkPercent": 44,
+  "customerTalkPercent": 56,
+  "agentScores": {
+    "communicationClarity": 7.8,
+    "politeness": 8.0,
+    "businessKnowledge": 7.6,
+    "problemHandling": 7.2,
+    "listeningAbility": 7.8
+  },
+  "questionnaire": [
+    { "questionId": "Q1", "questionText": "Are you remodeling the entire kitchen or just replacing cabinets?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q2", "questionText": "Is this kitchen for your primary home or a rental property?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q3", "questionText": "What is the approximate size or layout of your kitchen?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q4", "questionText": "Are you planning to keep the same layout or redesign the kitchen?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q5", "questionText": "Do you have a preferred cabinet style (Shaker, flat panel, traditional)?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q6", "questionText": "Do you have a preferred cabinet color or finish?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q7", "questionText": "What budget range are you targeting for your kitchen cabinets?", "stage": "Qualification", "asked": true },
+    { "questionId": "Q8", "questionText": "Would you like to schedule a design consultation or review designs?", "stage": "Sales", "asked": false },
+    { "questionId": "Q9", "questionText": "What are your thoughts about the design proposal we shared?", "stage": "Sales", "asked": false },
+    { "questionId": "Q10", "questionText": "Are you comparing quotes from other companies?", "stage": "Qualification", "asked": true },
+    { "questionId": "Q11", "questionText": "What materials are the other companies offering?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q12", "questionText": "Would you like help reviewing the competitor quote?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q13", "questionText": "Are there any concerns about pricing or materials?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q14", "questionText": "Are you interested in additional features like soft-close drawers or organizers?", "stage": "Sales", "asked": false },
+    { "questionId": "Q15", "questionText": "Do you have any concerns about delivery timelines or installation?", "stage": "Objection Handling", "asked": true }
+  ],
+  "questionCoverage": {
+    "total": 15,
+    "asked": 7,
+    "byStage": {
+      "Discovery": { "total": 6, "asked": 4 },
+      "Qualification": { "total": 2, "asked": 2 },
+      "Sales": { "total": 3, "asked": 0 },
+      "Objection Handling": { "total": 4, "asked": 1 }
+    }
+  },
+  "keywords": ["rental property", "budget cabinets", "stock sizes", "durable finishes"],
+  "actionItems": [
+    { "id": "1", "text": "Bundle quote for kitchen + two baths", "completed": false },
+    { "id": "2", "text": "Recommend value slab door style", "completed": false },
+    { "id": "3", "text": "Share landlord-friendly warranty summary", "completed": false }
+  ],
+  "positiveObservations": [
+    "Quick qualification for non-primary use case",
+    "Aligned recommendations to ROI for rentals"
+  ],
+  "negativeObservations": ["Could confirm tenant occupancy timeline"],
+  "conversationQuality": {
+    "pacing": 8.0,
+    "structure": 7.6,
+    "engagement": 8.3,
+    "summary": "Efficient, budget-focused dialogue with strong customer participation and clear next steps."
+  }
+}

@@ -1,0 +1,17 @@
+[
+  { "id": "Q1",  "text": "Are you remodeling the entire kitchen or just replacing cabinets?",       "stage": "Discovery" },
+  { "id": "Q2",  "text": "Is this kitchen for your primary home or a rental property?",             "stage": "Discovery" },
+  { "id": "Q3",  "text": "What is the approximate size or layout of your kitchen?",                "stage": "Discovery" },
+  { "id": "Q4",  "text": "Are you planning to keep the same layout or redesign the kitchen?",       "stage": "Discovery" },
+  { "id": "Q5",  "text": "Do you have a preferred cabinet style (Shaker, flat panel, traditional)?","stage": "Discovery" },
+  { "id": "Q6",  "text": "Do you have a preferred cabinet color or finish?",                        "stage": "Discovery" },
+  { "id": "Q7",  "text": "What budget range are you targeting for your kitchen cabinets?",          "stage": "Qualification" },
+  { "id": "Q8",  "text": "Would you like to schedule a design consultation or review designs?",     "stage": "Sales" },
+  { "id": "Q9",  "text": "What are your thoughts about the design proposal we shared?",             "stage": "Sales" },
+  { "id": "Q10", "text": "Are you comparing quotes from other companies?",                          "stage": "Qualification" },
+  { "id": "Q11", "text": "What materials are the other companies offering?",                        "stage": "Objection Handling" },
+  { "id": "Q12", "text": "Would you like help reviewing the competitor quote?",                    "stage": "Objection Handling" },
+  { "id": "Q13", "text": "Are there any concerns about pricing or materials?",                     "stage": "Objection Handling" },
+  { "id": "Q14", "text": "Are you interested in additional features like soft-close drawers or organizers?", "stage": "Sales" },
+  { "id": "Q15", "text": "Do you have any concerns about delivery timelines or installation?",      "stage": "Objection Handling" }
+]

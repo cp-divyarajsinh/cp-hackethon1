@@ -1,0 +1,64 @@
+{
+  "id": "call-5",
+  "fileName": "Call 5.wav",
+  "uploadedAt": "2025-03-06T13:50:00.000Z",
+  "duration": 127,
+  "status": "ready",
+  "transcript": "Customer: It's been eight weeks past promise — this is unacceptable.\nAgent: I'm sorry — the rail system backordered. We're allocating from another run.\nCustomer: I need cabinets before the countertop measure.\nAgent: I'll credit rush freight and push dispatch — you'll get a date within 24 hours.\nCustomer: I need that in writing.",
+  "summary": "Service call about a two-month delivery delay on a prior order. Customer is upset; agent explained supply chain constraints and offered expedited shipping credit. Outcome: partial credit accepted, still at risk.",
+  "sentiment": "negative",
+  "overallScore": 5.2,
+  "agentTalkPercent": 45,
+  "customerTalkPercent": 55,
+  "agentScores": {
+    "communicationClarity": 6.0,
+    "politeness": 7.0,
+    "businessKnowledge": 6.5,
+    "problemHandling": 5.0,
+    "listeningAbility": 6.5
+  },
+  "questionnaire": [
+    { "questionId": "Q1", "questionText": "Are you remodeling the entire kitchen or just replacing cabinets?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q2", "questionText": "Is this kitchen for your primary home or a rental property?", "stage": "Discovery", "asked": true },
+    { "questionId": "Q3", "questionText": "What is the approximate size or layout of your kitchen?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q4", "questionText": "Are you planning to keep the same layout or redesign the kitchen?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q5", "questionText": "Do you have a preferred cabinet style (Shaker, flat panel, traditional)?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q6", "questionText": "Do you have a preferred cabinet color or finish?", "stage": "Discovery", "asked": false },
+    { "questionId": "Q7", "questionText": "What budget range are you targeting for your kitchen cabinets?", "stage": "Qualification", "asked": true },
+    { "questionId": "Q8", "questionText": "Would you like to schedule a design consultation or review designs?", "stage": "Sales", "asked": true },
+    { "questionId": "Q9", "questionText": "What are your thoughts about the design proposal we shared?", "stage": "Sales", "asked": false },
+    { "questionId": "Q10", "questionText": "Are you comparing quotes from other companies?", "stage": "Qualification", "asked": false },
+    { "questionId": "Q11", "questionText": "What materials are the other companies offering?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q12", "questionText": "Would you like help reviewing the competitor quote?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q13", "questionText": "Are there any concerns about pricing or materials?", "stage": "Objection Handling", "asked": false },
+    { "questionId": "Q14", "questionText": "Are you interested in additional features like soft-close drawers or organizers?", "stage": "Sales", "asked": false },
+    { "questionId": "Q15", "questionText": "Do you have any concerns about delivery timelines or installation?", "stage": "Objection Handling", "asked": false }
+  ],
+  "questionCoverage": {
+    "total": 15,
+    "asked": 4,
+    "byStage": {
+      "Discovery": { "total": 6, "asked": 2 },
+      "Qualification": { "total": 2, "asked": 1 },
+      "Sales": { "total": 3, "asked": 1 },
+      "Objection Handling": { "total": 4, "asked": 0 }
+    }
+  },
+  "keywords": ["delivery delay", "order status", "supply chain", "service recovery"],
+  "actionItems": [
+    { "id": "1", "text": "Escalate with logistics for firm ship date", "completed": false },
+    { "id": "2", "text": "Apply shipping credit to invoice", "completed": false },
+    { "id": "3", "text": "Daily SMS updates until dispatch", "completed": false }
+  ],
+  "positiveObservations": ["Empathy statements at open", "Offered tangible credit"],
+  "negativeObservations": [
+    "Late proactive communication on delay",
+    "Did not set a single accountable owner for updates"
+  ],
+  "conversationQuality": {
+    "pacing": 5.4,
+    "structure": 5.2,
+    "engagement": 6.1,
+    "summary": "Emotion-forward service call; agent remained professional though the flow was reactive to frustration."
+  }
+}

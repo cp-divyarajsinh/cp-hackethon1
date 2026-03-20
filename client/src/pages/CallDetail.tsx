@@ -92,7 +92,7 @@ export function CallDetail() {
         <div className="lg:col-span-5 space-y-6">
           <ScoreRadarChart scores={c.agentScores} />
           <QuestionnaireTable items={c.questionnaire} />
-          <TranscriptQuestionPanel callId={c.id} />
+          <TranscriptQuestionPanel callId={c.id} questionnaire={c.questionnaire} />
           <KeywordTags keywords={c.keywords} />
           <ActionItemsList items={c.actionItems} />
           <ObservationsPanel positive={c.positiveObservations} negative={c.negativeObservations} />

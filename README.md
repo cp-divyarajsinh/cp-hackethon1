@@ -81,6 +81,17 @@ Dashboard aggregates (from seeds): average score ~**6.7**, sentiment mix **3 / 2
 
 Built with a fast iteration (“vibe coding”) workflow: strong defaults, seeded data, and a single `npm run dev` path for demos.
 
+
+## Submission Package
+
+For judging handoff, use these repo artifacts:
+
+- Working prototype: run and verify using the **Quick start** section above.
+- Deliverable checklist: `docs/SUBMISSION_CHECKLIST.md`
+- Prompt log (Vibe Coding record): `docs/PROMPT_LOG.md`
+- Demo video script/shot list (5–7 min): `docs/DEMO_VIDEO_GUIDE.md`
+- Setup + architecture: this `README.md`
+
 ## Scripts
 
 | Script | Description |
@@ -92,4 +103,3 @@ Built with a fast iteration (“vibe coding”) workflow: strong defaults, seede
 | `npm run install:all` | `npm install` (workspaces) |
 
 Optional: regenerate seeds from `server/scripts/build-seeds.cjs` if you change the questionnaire matrix (run from repo: `node server/scripts/build-seeds.cjs`).
-# cp-hackethon1

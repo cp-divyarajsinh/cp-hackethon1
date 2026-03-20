@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Loader2, MessageCircleQuestion, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import * as api from '@/lib/api';
+import type { QuestionnaireResult } from '@/types';
 
 const NOT_DISCUSSED = 'It was not discussed or not evident.';
+const NO_EVIDENCE = 'No clear evidence for this in the transcript.';
 
 interface QaItem {
   id: string;
@@ -13,13 +15,15 @@ interface QaItem {
 
 interface Props {
   callId: string;
+  questionnaire?: QuestionnaireResult[];
 }
 
-export function TranscriptQuestionPanel({ callId }: Props) {
+export function TranscriptQuestionPanel({ callId, questionnaire = [] }: Props) {
   const [library, setLibrary] = useState<api.LibraryQuestion[]>([]);
   const [playbookAnswers, setPlaybookAnswers] = useState<Record<string, string>>({});
   const [playbookLoading, setPlaybookLoading] = useState<Record<string, boolean>>({});
   const [playbookError, setPlaybookError] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   const [input, setInput] = useState('');
   const [customItems, setCustomItems] = useState<QaItem[]>([]);
@@ -84,6 +88,20 @@ export function TranscriptQuestionPanel({ callId }: Props) {
     askCustom(input);
   };
 
+  const askedById = useMemo(() => {
+    const map: Record<string, boolean> = {};
+    questionnaire.forEach((q) => {
+      map[q.questionId] = !!q.asked;
+    });
+    return map;
+  }, [questionnaire]);
+
+  const visibleLibrary = useMemo(() => {
+    if (showAll || questionnaire.length === 0) return library;
+    const covered = library.filter((q) => askedById[q.id]);
+    return covered.length ? covered : library;
+  }, [showAll, questionnaire.length, library, askedById]);
+
   return (
     <div className="rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] overflow-hidden">
       <div className="px-4 py-3 border-b border-[var(--border)] flex items-center gap-2">
@@ -91,29 +109,32 @@ export function TranscriptQuestionPanel({ callId }: Props) {
         <div className="min-w-0">
           <h3 className="text-sm font-semibold text-[var(--text-primary)]">Interactive question list</h3>
           <p className="text-[11px] text-[var(--text-tertiary)]">
-            Ask each playbook question against this transcript, then add your own follow-ups below.
+            Ask relevant business questions against this transcript, then add your own follow-ups below.
           </p>
         </div>
       </div>
 
       <div className="p-4 border-b border-[var(--border)] space-y-2">
         {playbookError && <p className="text-sm text-[var(--danger)]">{playbookError}</p>}
-        <p className="text-[11px] text-[var(--text-tertiary)]">
-          Use <strong className="text-[var(--text-secondary)] font-medium">Ask</strong> on a row to run that question
-          only. If a topic isn&apos;t in the call, you&apos;ll see:{' '}
-          <span className="mono text-[var(--text-secondary)]">{NOT_DISCUSSED}</span>
-        </p>
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-[11px] text-[var(--text-tertiary)]">
+            By default, only questions marked as covered in the business questionnaire are shown.
+          </p>
+          <Button type="button" size="sm" variant="outline" onClick={() => setShowAll((v) => !v)}>
+            {showAll ? 'Show relevant only' : 'Show all 15'}
+          </Button>
+        </div>
       </div>
 
       <div className="p-4 space-y-3 border-b border-[var(--border)] max-h-[min(60vh,520px)] overflow-y-auto">
         <p className="text-xs uppercase tracking-wide text-[var(--accent)] font-semibold">
           Playbook questions
         </p>
-        {library.length === 0 ? (
+        {visibleLibrary.length === 0 ? (
           <p className="text-sm text-[var(--text-tertiary)]">Loading questions…</p>
         ) : (
           <div className="space-y-3">
-            {library.map((row, i) => {
+            {visibleLibrary.map((row, i) => {
               const loading = !!playbookLoading[row.id];
               const ans = (playbookAnswers[row.id] ?? '').trim();
               return (
@@ -146,7 +167,7 @@ export function TranscriptQuestionPanel({ callId }: Props) {
                         Click Ask to analyze this question against the transcript.
                       </span>
                     ) : ans === NOT_DISCUSSED ? (
-                      <span>{NOT_DISCUSSED}</span>
+                      <span className="text-[var(--text-tertiary)]">{NO_EVIDENCE}</span>
                     ) : (
                       ans
                     )}
@@ -193,7 +214,7 @@ export function TranscriptQuestionPanel({ callId }: Props) {
                   {row.question}
                 </p>
                 <p className="text-sm text-[var(--text-secondary)] leading-relaxed whitespace-pre-wrap">
-                  {row.answer}
+                  {row.answer.trim() === NOT_DISCUSSED ? NO_EVIDENCE : row.answer}
                 </p>
               </div>
             ))}

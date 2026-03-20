@@ -19,6 +19,11 @@ function getClient() {
 
 const MODEL = process.env.OPENAI_ANALYSIS_MODEL || 'gpt-4o-mini';
 
+function isNotDiscussedAnswer(text) {
+  const t = String(text || '').trim().toLowerCase();
+  return t === NOT_DISCUSSED.toLowerCase() || t.includes('not discussed') || t.includes('not evident');
+}
+
 async function answerFromTranscript(transcript, question) {
   const trimmedQ = (question || '').trim();
   if (!trimmedQ) {
@@ -43,7 +48,29 @@ async function answerFromTranscript(transcript, question) {
     ],
   });
 
-  return (response.choices[0]?.message?.content ?? '').trim();
+  const first = (response.choices[0]?.message?.content ?? '').trim();
+  if (!isNotDiscussedAnswer(first)) return first;
+
+  // Second pass: reduce false negatives for questions that are indirectly answered in transcript.
+  const retry = await getClient().chat.completions.create({
+    model: MODEL,
+    max_tokens: 600,
+    messages: [
+      {
+        role: 'system',
+        content:
+          'You are assisting a sales coach. Re-check the transcript carefully and answer ONLY from transcript evidence. ' +
+          'If there are indirect clues, provide the best-supported answer with brief uncertainty language (e.g., "appears", "likely"). ' +
+          `Only return EXACTLY "${NOT_DISCUSSED}" when there is truly no evidence at all.`,
+      },
+      {
+        role: 'user',
+        content: `CALL TRANSCRIPT:\n---\n${transcript}\n---\n\nQUESTION:\n${trimmedQ}`,
+      },
+    ],
+  });
+
+  return (retry.choices[0]?.message?.content ?? '').trim() || NOT_DISCUSSED;
 }
 
 function loadQuestions() {
